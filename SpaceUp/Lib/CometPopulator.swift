@@ -13,7 +13,7 @@ class CometPopulator {
   weak var dataSource: GameDataSource?
   
   var emitters = [CometEmitter]()
-
+  var currentScore = Int()
   init() {
   }
   
@@ -112,7 +112,7 @@ class CometPopulator {
       let speedOffset = gameData.levelFactor * 100
       let speed = CGFloat.random(min: 200, max: 300) + speedOffset
       let levelFactor = dataSource?.gameData.levelFactor ?? 0
-      let emitter = CometEmitter(type: type, speed: speed, fromPosition: fromPosition, toPosition: toPosition)
+      let emitter = CometEmitter(type: type, speed: speed, fromPosition: fromPosition, toPosition: toPosition, currentScore: currentScore)
       
       emitters << emitter
       

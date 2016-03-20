@@ -25,16 +25,17 @@ class CometEmitter {
   let toPosition: CGPoint
   let duration: NSTimeInterval
   let type: CometType
+let currentScore: Int
   
   private let uid = NSUUID().UUIDString
   
   // MARK: - Init
-  init(type: CometType, speed: CGFloat, fromPosition: CGPoint, toPosition: CGPoint) {
+    init(type: CometType, speed: CGFloat, fromPosition: CGPoint, toPosition: CGPoint, currentScore: Int) {
     self.type = type
     self.speed = speed
     self.fromPosition = fromPosition
     self.toPosition = toPosition
-    
+    self.currentScore = currentScore
     var duration = NSTimeInterval(toPosition.distanceTo(fromPosition) / speed)
     
     switch type {
@@ -117,7 +118,8 @@ class CometEmitter {
   }
 
   func addCometOfType(type: CometType) -> CometNode {
-    let comet = CometNode(type: type, isReversed: fromPosition.x > toPosition.x)
+    print(type)
+    let comet = CometNode(type: type, isReversed: fromPosition.x > toPosition.x, currentScore: currentScore)
     
     comet.emitter = self
     populator?.world?.addChild(comet)

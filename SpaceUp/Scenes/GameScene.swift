@@ -20,7 +20,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
   let bottomBoundary = LineBoundaryNode(length: SceneSize.width, axis: .X)
   let cometPopulator = CometPopulator()
   let filteredMotion = FilteredMotion()
-  
+
   // MARK: - Vars
     
   var interstitial: GADInterstitial?
@@ -38,7 +38,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
   // MARK: - Init
   init(size: CGSize, gameData: GameData) {
     self.gameData = gameData
-
     super.init(size: size)
   }
 
@@ -63,7 +62,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
     // Populator
     cometPopulator.world = world
     cometPopulator.dataSource = self
-
+    
     // Backgrounds
     updateMotion()
     addChild(background)
@@ -172,6 +171,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
   
   // MARK: - Event
   override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    cometPopulator.currentScore = Int(self.gameData.getUpdatedScore())
     if view?.paused == true {
       return
     }

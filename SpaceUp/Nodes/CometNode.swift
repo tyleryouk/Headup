@@ -16,8 +16,8 @@ private struct KeyForAction {
 
 class CometNode: SKSpriteNode {
   // MARK: - Immutable vars
-  let sphere: SKSpriteNode
-  let glow: SKSpriteNode
+  var sphere: SKSpriteNode
+  var glow: SKSpriteNode
   let type: CometType
   
   // MARK: - Vars
@@ -49,34 +49,70 @@ class CometNode: SKSpriteNode {
   }()
 
   // MARK: - Init
-  init(type: CometType, isReversed: Bool = false) {
+    init(type: CometType, isReversed: Bool = false, currentScore: Int) {
     self.type = type
-
+    print("New commet with for current score " + String(currentScore) + " and type: " + String(type))
     let radius: CGFloat
     
-    switch type {
-    case .Slow:
-      sphere = SKSpriteNode(imageNamed: TextureFileName.CometLarge)
-      glow = SKSpriteNode(imageNamed: TextureFileName.CometLargeGlow)
-      glow.anchorPoint = CGPoint(x: 0.68, y: 0.38)
-      radius = 99
+        switch type {
+            case .Slow:
+        
+            sphere = SKSpriteNode(imageNamed: TextureFileName.CometLarge)
+            glow = SKSpriteNode(imageNamed: TextureFileName.CometLargeGlow)
+            glow.anchorPoint = CGPoint(x: 0.68, y: 0.38)
+            
+            if (currentScore > 70 && currentScore < 120) {
+                sphere = SKSpriteNode(imageNamed: TextureFileName.CometLarge2)
+                glow = SKSpriteNode(imageNamed: TextureFileName.CometLargeGlow2)
+            } else if (currentScore >= 120) {
+                sphere = SKSpriteNode(imageNamed: TextureFileName.CometLarge3)
+                glow = SKSpriteNode(imageNamed: TextureFileName.CometLargeGlow3)
+            }
+        
+          radius = 99
       
-    case .Fast:
-      sphere = SKSpriteNode(imageNamed: TextureFileName.CometSmall)
-      glow = SKSpriteNode(imageNamed: TextureFileName.CometSmallGlow)
-      glow.anchorPoint = CGPoint(x: 0.68, y: 0.38)
-      radius = 36
+        case .Fast:
+            sphere = SKSpriteNode(imageNamed: TextureFileName.CometSmall)
+            glow = SKSpriteNode(imageNamed: TextureFileName.CometSmallGlow)
+            glow.anchorPoint = CGPoint(x: 0.68, y: 0.38)
+            
+            if (currentScore > 70 && currentScore < 120) {
+                sphere = SKSpriteNode(imageNamed: TextureFileName.CometSmall2)
+                glow = SKSpriteNode(imageNamed: TextureFileName.CometSmallGlow2)
+            } else if (currentScore >= 120) {
+                sphere = SKSpriteNode(imageNamed: TextureFileName.CometSmall3)
+                glow = SKSpriteNode(imageNamed: TextureFileName.CometSmallGlow3)
+            }
+            
+            radius = 36
       
-    case .Award:
-      sphere = SKSpriteNode(imageNamed: TextureFileName.CometStar)
-      glow = SKSpriteNode(imageNamed: TextureFileName.CometStarGlow)
-      radius = 25
-      
-    default:
-      sphere = SKSpriteNode(imageNamed: TextureFileName.CometMedium)
-      glow = SKSpriteNode(imageNamed: TextureFileName.CometMediumGlow)
-      glow.anchorPoint = CGPoint(x: 0.68, y: 0.38)
-      radius = 63
+        case .Award:
+            sphere = SKSpriteNode(imageNamed: TextureFileName.CometStar)
+            glow = SKSpriteNode(imageNamed: TextureFileName.CometStarGlow)
+            
+            if (currentScore > 70 && currentScore < 120) {
+                sphere = SKSpriteNode(imageNamed: TextureFileName.CometStar2)
+                glow = SKSpriteNode(imageNamed: TextureFileName.CometStarGlow2)
+            } else if (currentScore >= 120) {
+                sphere = SKSpriteNode(imageNamed: TextureFileName.CometStar3)
+                glow = SKSpriteNode(imageNamed: TextureFileName.CometStarGlow3)
+            }
+            radius = 25
+
+        default: //Regular
+            sphere = SKSpriteNode(imageNamed: TextureFileName.CometMedium)
+            glow = SKSpriteNode(imageNamed: TextureFileName.CometMediumGlow)
+            
+            if (currentScore > 70 && currentScore < 120) {
+                sphere = SKSpriteNode(imageNamed: TextureFileName.CometMedium2)
+                glow = SKSpriteNode(imageNamed: TextureFileName.CometMediumGlow2)
+            } else if (currentScore >= 120) {
+                sphere = SKSpriteNode(imageNamed: TextureFileName.CometMedium3)
+                glow = SKSpriteNode(imageNamed: TextureFileName.CometMediumGlow3)
+            }
+            
+            glow.anchorPoint = CGPoint(x: 0.68, y: 0.38)
+            radius = 63
     }
 
     physicsFrame = CGRect(x: radius, y: radius, width: radius * 2, height: radius * 2)

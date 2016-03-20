@@ -106,6 +106,10 @@ class GameData: NSObject, NSCoding {
     score = max(player.distanceTravelled / 100, score)
   }
 
+    func getUpdatedScore() -> Int{
+        return Int(score)
+    }
+
   func reset() {
     score = 0
   }
