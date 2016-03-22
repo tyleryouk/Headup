@@ -12,14 +12,15 @@ import GoogleMobileAds
 
 class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegate, GameDataSource {
   // MARK: - Immutable var
-  unowned let gameData: GameData
-  let world = WorldNode()
-  let hud = HUDNode()
-  let pauseButton = IconButtonNode(size: CGSize(width: 70, height: 70), text: "\u{f04c}")
-  let background = SceneBackgroundNode()
-  let bottomBoundary = LineBoundaryNode(length: SceneSize.width, axis: .X)
-  let cometPopulator = CometPopulator()
-  let filteredMotion = FilteredMotion()
+    unowned let gameData: GameData
+    let world = WorldNode()
+    let hud = HUDNode()
+    var pauseButton = IconButtonNode(size: CGSize(width: 70, height: 70), text: "\u{f04c}")
+    let background = SceneBackgroundNode()
+    let bottomBoundary = LineBoundaryNode(length: SceneSize.width, axis: .X)
+    let cometPopulator = CometPopulator()
+    let filteredMotion = FilteredMotion()
+    
 
   // MARK: - Vars
     
@@ -48,7 +49,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
   // MARK: - View
   override func didMoveToView(view: SKView) {
     backgroundColor = UIColor(hexString: ColorHex.BackgroundColor)
-    
     SetupAdmob()
     
     // Physics
@@ -218,7 +218,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
     pauseMenu.soundButton.delegate = self
     pauseMenu.musicButton.delegate = self
 
-    addChildIfNeeded(pauseMenu)
+    addChild(pauseMenu)
     
     return pauseMenu
   }
@@ -313,47 +313,43 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
     }
   }
   
-  func togglePauseGame() {
-    if paused {
-      pauseGame(false)
-    } else {
-      pauseGame(true)
-    }
-  }
-  
+
   func pauseGame(paused: Bool, presentMenuIfNeeded: Bool = true) {
-    view?.paused = paused
-    
-    if paused {
-      if presentMenuIfNeeded {
-        pauseMenu = presentPauseMenu()
-      }
-      
-      gameSceneDelegate?.gameSceneDidPause?(self)
+
+    if (paused) {
+        self.pauseButton.hidden = true
+        gameSceneDelegate?.gameSceneDidPause?(self)
+        self.pauseMenu = presentPauseMenu()
+        self.pauseMenu?.resumeButton.delegate = self
+        afterDelay(0.1) { [weak self] in
+            self!.view?.paused = true
+        }
     } else {
-      pauseMenu?.removeFromParent()
-      pauseMenu = nil
-      
-      gameSceneDelegate?.gameSceneDidResume?(self)
+        self.view?.paused = false
+        self.pauseButton.hidden = false
+        self.pauseMenu?.removeFromParent()
+        gameSceneDelegate?.gameSceneDidResume?(self)
     }
+    
+    
   }
   
   // MARK: - ButtonDelegate
   func touchBeganForButton(button: ButtonNode) {
     if button == pauseButton {
-      togglePauseGame()
+        self.pauseGame(true)
     } else if button == pauseMenu?.resumeButton {
-      pauseGame(false)
+        self.pauseGame(false)
     } else if button == pauseMenu?.quitButton || button == endGameView?.quitButton {
-      gameSceneDelegate?.gameSceneDidRequestQuit?(self)
+        gameSceneDelegate?.gameSceneDidRequestQuit?(self)
     } else if button == pauseMenu?.musicButton {
-      gameSceneDelegate?.gameSceneDidRequestToggleMusic?(self, withButton: pauseMenu!.musicButton)
+        gameSceneDelegate?.gameSceneDidRequestToggleMusic?(self, withButton: pauseMenu!.musicButton)
     } else if button == pauseMenu?.soundButton {
-      gameSceneDelegate?.gameSceneDidRequestToggleSound?(self, withButton: pauseMenu!.soundButton)
+        gameSceneDelegate?.gameSceneDidRequestToggleSound?(self, withButton: pauseMenu!.soundButton)
     } else if button == endGameView?.continueButton {
-      continueGame()
+        continueGame()
     } else if button == endGameView?.leaderboardButton {
-      gameSceneDelegate?.gameSceneDidRequestLeaderboard?(self)
+        gameSceneDelegate?.gameSceneDidRequestLeaderboard?(self)
     }
   }
   

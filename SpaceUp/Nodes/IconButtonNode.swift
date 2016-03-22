@@ -10,7 +10,7 @@ import SpriteKit
 
 class IconButtonNode: ButtonNode {
   let buttonFace: SKShapeNode
-  let iconLabel: SKLabelNode
+  var iconLabel: SKLabelNode
 
   // MARK: - Init
   init(size: CGSize, text: String) {
@@ -40,4 +40,8 @@ class IconButtonNode: ButtonNode {
   required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
+    
+    func changeTitleWith(let newText: String) {
+      self.iconLabel.text = newText
+    }
 }
