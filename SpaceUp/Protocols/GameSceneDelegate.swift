@@ -9,14 +9,17 @@
 import SpriteKit
 
 @objc protocol GameSceneDelegate {
-  optional func gameSceneDidRequestStart(gameScene: GameScene)
-  optional func gameSceneDidRequestRetry(gameScene: GameScene)
-  optional func gameSceneDidRequestQuit(gameScene: GameScene)
-  optional func gameSceneDidRequestLeaderboard(gameScene: GameScene)
-  optional func gameSceneDidRequestToggleSound(gameScene: GameScene, withButton button: SpriteButtonNode)
-  optional func gameSceneDidRequestToggleMusic(gameScene: GameScene, withButton button: SpriteButtonNode)
-  optional func gameSceneDidPause(gameScene: GameScene)
-  optional func gameSceneDidResume(gameScene: GameScene)
-  optional func gameSceneDidEnd(gameScene: GameScene)
-  optional func gameSceneDidStart(gameScene: GameScene)
+    optional func gameSceneDidRequestStart(gameScene: GameScene)
+    optional func gameSceneDidRequestRetry(gameScene: GameScene)
+    optional func gameSceneDidRequestQuit(gameScene: GameScene)
+    optional func gameSceneDidRequestLeaderboard(gameScene: GameScene)
+    optional func gameSceneDidRequestToggleSound(gameScene: GameScene, withButton button: SpriteButtonNode)
+    optional func gameSceneDidRequestToggleMusic(gameScene: GameScene, withButton button: SpriteButtonNode)
+    optional func gameSceneDidPause(gameScene: GameScene)
+    optional func gameSceneDidResume(gameScene: GameScene)
+    optional func gameSceneDidEnd(gameScene: GameScene)
+    optional func gameSceneDidStart(gameScene: GameScene)
+    optional func gameSceneDidRequestToShowEnemiesView(gameScene: GameScene, withCurrentScore: Int)
+    optional func gameSceneDidRequestToDismissEnemiesView(gameScene: GameScene)
+
 }

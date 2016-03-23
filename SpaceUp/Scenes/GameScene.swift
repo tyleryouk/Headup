@@ -11,7 +11,7 @@ import CoreMotion
 import GoogleMobileAds
 
 class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegate, GameDataSource {
-  // MARK: - Immutable var
+    // MARK: - Immutable var
     unowned let gameData: GameData
     let world = WorldNode()
     let hud = HUDNode()
@@ -22,19 +22,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
     let filteredMotion = FilteredMotion()
     
 
-  // MARK: - Vars
-    
-  var interstitial: GADInterstitial?
-  weak var endGameView: EndGameView?
-  weak var pauseMenu: PauseMenuView?
-  weak var gameSceneDelegate: GameSceneDelegate?
-  weak var motionDataSource: MotionDataSource?
-  var textures: [SKTexture]?
-  var textureAtlases: [SKTextureAtlas]?
-  var tip: TapTipNode?
-  var gameStarted = false
-  var godMode = false
-  var gameOverCount:Int = 0
+    // MARK: - Vars
+    var interstitial: GADInterstitial?
+    weak var endGameView: EndGameView?
+    weak var pauseMenu: PauseMenuView?
+    weak var enemiesView : EnemiesView?
+    weak var gameSceneDelegate: GameSceneDelegate?
+    weak var motionDataSource: MotionDataSource?
+    var textures: [SKTexture]?
+    var textureAtlases: [SKTextureAtlas]?
+    var tip: TapTipNode?
+    var gameStarted = false
+    var godMode = false
+    var gameOverCount:Int = 0
     
   // MARK: - Init
   init(size: CGSize, gameData: GameData) {
@@ -45,11 +45,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
   required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
+    
+    func showInformationsWhileDeveloping() {
+        self.view?.showsNodeCount = true
+        self.view?.showsFPS = true;
+    }
 
   // MARK: - View
   override func didMoveToView(view: SKView) {
     backgroundColor = UIColor(hexString: ColorHex.BackgroundColor)
     SetupAdmob()
+    self.showInformationsWhileDeveloping()
     
     // Physics
     physicsWorld.contactDelegate = self
@@ -217,9 +223,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
     pauseMenu.quitButton.delegate = self
     pauseMenu.soundButton.delegate = self
     pauseMenu.musicButton.delegate = self
+    pauseMenu.enemiesButton.delegate = self
 
     addChild(pauseMenu)
-    
     return pauseMenu
   }
   
@@ -236,6 +242,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
     
     return endGameView
   }
+    
+    func presentEnemiesGameView(currentScore: Int) -> EnemiesView {
+        let enemiesView = EnemiesView(currentScore: currentScore)
+        enemiesView.zPosition = 1000
+        enemiesView.exitButton.delegate = self
+        enemiesView.currentUserScore = currentScore
+        addChild(enemiesView)
+        return enemiesView
+    }
+    
   
   // MARK: - Gameflow
   func startGame() {
@@ -267,7 +283,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
 
   func endGame() {
     let hasNewTopScore = gameData.score > gameData.topScore
-  
+
     if !godMode {
       gameData.updateTopScore()
       gameData.saveToArchive()
@@ -350,6 +366,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
         continueGame()
     } else if button == endGameView?.leaderboardButton {
         gameSceneDelegate?.gameSceneDidRequestLeaderboard?(self)
+    } else if button == pauseMenu?.enemiesButton {
+        gameSceneDelegate?.gameSceneDidRequestToShowEnemiesView?(self, withCurrentScore: Int(round(gameData.score)))
+    } else if button == enemiesView?.exitButton {
+       gameSceneDelegate?.gameSceneDidRequestToDismissEnemiesView?(self)
     }
   }
   

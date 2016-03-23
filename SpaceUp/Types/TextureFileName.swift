@@ -44,8 +44,8 @@ struct TextureFileName {
     static let CometMedium = "CometMedium"
     static let CometMediumGlow = "CometMediumGlow"
     static let CometMedium2 = "CometMedium2"
-    static let CometMediumGlow2 = "CometMediumGlow3"
-    static let CometMedium3 = "CometMedium2"
+    static let CometMediumGlow2 = "CometMediumGlow2"
+    static let CometMedium3 = "CometMedium3"
     static let CometMediumGlow3 = "CometMediumGlow3"
 
     static let CometSmall = "CometSmall"
@@ -72,6 +72,7 @@ struct TextureFileName {
     static let ButtonPlayAgain = "BtnPlayAgain"
     static let ButtonHome = "BtnHome"
     static let ButtonResume = "BtnResume"
+    static let ButtonEnemies = "BtnEnemies"
     static let LabelNewScore = "LabelNewScore"
     static let TapTip = "Hand"
 

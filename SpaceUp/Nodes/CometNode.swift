@@ -51,9 +51,8 @@ class CometNode: SKSpriteNode {
   // MARK: - Init
     init(type: CometType, isReversed: Bool = false, currentScore: Int) {
     self.type = type
-    print("New commet with for current score " + String(currentScore) + " and type: " + String(type))
+        
     let radius: CGFloat
-    
         switch type {
             case .Slow:
         

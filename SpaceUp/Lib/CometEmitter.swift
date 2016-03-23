@@ -118,7 +118,6 @@ let currentScore: Int
   }
 
   func addCometOfType(type: CometType) -> CometNode {
-    print(type)
     let comet = CometNode(type: type, isReversed: fromPosition.x > toPosition.x, currentScore: currentScore)
     
     comet.emitter = self

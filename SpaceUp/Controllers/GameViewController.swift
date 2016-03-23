@@ -495,7 +495,28 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
   func gameSceneDidRequestToggleMusic(gameScene: GameScene, withButton button: SpriteButtonNode) {
     toggleMusicForScene(gameScene, withButton: button)
   }
+    
+    
+    func gameSceneDidRequestToShowEnemiesView(gameScene: GameScene, withCurrentScore: Int) {
+        print("in delegate score:" + String(withCurrentScore))
+        gameScene.view?.paused = false
+        gameScene.pauseMenu?.removeFromParent()
+        gameScene.enemiesView = gameScene.presentEnemiesGameView(withCurrentScore)
+        afterDelay(0.01) { [weak gameScene] in
+            gameScene!.view?.paused = true
+        }
+    }
   
+    func gameSceneDidRequestToDismissEnemiesView(gameScene: GameScene) {
+        gameScene.view?.paused = false
+        gameScene.enemiesView?.removeFromParent()
+        gameScene.pauseMenu = gameScene.presentPauseMenu()
+        afterDelay(0.01) { [weak gameScene] in
+            gameScene!.view?.paused = true
+        }
+
+    }
+    
   // MARK: - MotionDataSource
   func accelerometerDataForScene(scene: SKScene) -> CMAccelerometerData? {
     return motionManager.accelerometerData
