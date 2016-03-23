@@ -10,18 +10,18 @@ import SpriteKit
 
 class EnemiesView : ModalView {
     // MARK: - Immutable var
-    let exitButton = SpriteButtonNode(imageNamed: TextureFileName.ButtonResume)
+    let exitButton = SpriteButtonNode(imageNamed: TextureFileName.kCloseEnemiesViewButton)
     var currentUserScore:Int?
     
-    let firstImage = SpriteButtonNode(imageNamed: TextureFileName.CometSmall)
-    let secondImage = SpriteButtonNode(imageNamed: TextureFileName.CometSmall2)
-    let thirdImage = SpriteButtonNode(imageNamed: TextureFileName.CometSmall3)
-    let fourthImage = SpriteButtonNode(imageNamed: TextureFileName.CometMedium)
-    let fifthImage = SpriteButtonNode(imageNamed: TextureFileName.CometMedium2)
-    let sixthImage = SpriteButtonNode(imageNamed: TextureFileName.CometMedium3)
-    let seventhImage = SpriteButtonNode(imageNamed: TextureFileName.CometLarge)
-    let eighthImage = SpriteButtonNode(imageNamed: TextureFileName.CometLarge2)
-    let ninethImage = SpriteButtonNode(imageNamed: TextureFileName.CometLarge3)
+    let firstImage = SpriteButtonNode(imageNamed: TextureFileName.kHilaryClinton)
+    let secondImage = SpriteButtonNode(imageNamed: TextureFileName.kTedCruz)
+    let thirdImage = SpriteButtonNode(imageNamed: TextureFileName.kJebBush)
+    let fourthImage = SpriteButtonNode(imageNamed: TextureFileName.kMacMiller)
+    let fifthImage = SpriteButtonNode(imageNamed: TextureFileName.kBernieSanders)
+    let sixthImage = SpriteButtonNode(imageNamed: TextureFileName.kFloRida)
+    let seventhImage = SpriteButtonNode(imageNamed: TextureFileName.kBarackObama)
+    let eighthImage = SpriteButtonNode(imageNamed: TextureFileName.kVladimirPutin)
+    let ninethImage = SpriteButtonNode(imageNamed: TextureFileName.kMarcoRubio)
    
     let spriteImagesArray: Array<SpriteButtonNode>
     
@@ -29,65 +29,64 @@ class EnemiesView : ModalView {
     init(currentScore: Int) {
         spriteImagesArray = [self.firstImage, self.secondImage, self.thirdImage, self.fourthImage, self.fifthImage, self.sixthImage, self.seventhImage, self.eighthImage, ninethImage]
         self.currentUserScore = currentScore
-        self.currentUserScore = 15
         super.init(size: CGSize(width: 640, height: 1000))
 
-        // Resume
-        exitButton.position = CGPoint(x: modalBackground.frame.midX, y: modalBackground.frame.maxY - 150)
+        //Resume
+        exitButton.position = CGPoint(x: modalBackground.frame.maxX, y: modalBackground.frame.maxY)
         modal.addChild(exitButton)
         
         //0 - 0
-        let firstImageToSet = self.createNewImageRequiredPoints(15, position: 0, xPosition: Int(modalBackground.frame.minX) + 120, yPosition: Int(modalBackground.frame.maxY) - 250)
+        let firstImageToSet = self.createNewImageRequiredPoints(15, position: 0, xPosition: Int(modalBackground.frame.minX) + 120, yPosition: Int(modalBackground.frame.maxY) - 150)
         modal.addChild(firstImageToSet)
         
-        let firstTextLabel:SKLabelNode = self.createNewLabelWithPoints(15, name: "first one", xPosition: Int(modalBackground.frame.minX) + 120, yPosition: Int(modalBackground.frame.maxY) - 320)
+        let firstTextLabel:SKLabelNode = self.createNewLabelWithPoints(15, name: "Hillari Clinton", xPosition: Int(modalBackground.frame.minX) + 120, yPosition: Int(modalBackground.frame.maxY) - 250)
         modal.addChild(firstTextLabel)
     
         
         //0 - 1
-        let secondImageToSet = self.createNewImageRequiredPoints(20, position: 1, xPosition: Int(modalBackground.frame.maxX) - 120, yPosition: Int(modalBackground.frame.maxY) - 250)
+        let secondImageToSet = self.createNewImageRequiredPoints(20, position: 1, xPosition: Int(modalBackground.frame.maxX) - 120, yPosition: Int(modalBackground.frame.maxY) - 150)
         modal.addChild(secondImageToSet)
-        let secondTextLabel = self.createNewLabelWithPoints(20, name:"second one", xPosition: Int(modalBackground.frame.maxX) - 120, yPosition: Int(modalBackground.frame.maxY) - 320)
+        let secondTextLabel = self.createNewLabelWithPoints(20, name:"Ted Cruz", xPosition: Int(modalBackground.frame.maxX) - 120, yPosition: Int(modalBackground.frame.maxY) - 250)
         modal.addChild(secondTextLabel)
         
         //1 - 0
-        let thirdImage = self.createNewImageRequiredPoints(30, position: 2, xPosition: Int(modalBackground.frame.minX) + 120, yPosition: Int(modalBackground.frame.maxY) - 400)
+        let thirdImage = self.createNewImageRequiredPoints(30, position: 2, xPosition: Int(modalBackground.frame.minX) + 120, yPosition: Int(modalBackground.frame.maxY) - 350)
         modal.addChild(thirdImage)
-        let thirdTextLabel = self.createNewLabelWithPoints(30, name:"third one", xPosition: Int(modalBackground.frame.minX) + 120, yPosition: Int(modalBackground.frame.maxY) - 470)
+        let thirdTextLabel = self.createNewLabelWithPoints(30, name:"Jeb Bush", xPosition: Int(modalBackground.frame.minX) + 120, yPosition: Int(modalBackground.frame.maxY) - 450)
         modal.addChild(thirdTextLabel)
         
         //1 - 1
-        let fourthImageToSet = self.createNewImageRequiredPoints(70, position: 3, xPosition: Int(modalBackground.frame.maxX) - 120, yPosition: Int(modalBackground.frame.maxY) - 400)
+        let fourthImageToSet = self.createNewImageRequiredPoints(70, position: 3, xPosition: Int(modalBackground.frame.maxX) - 120, yPosition: Int(modalBackground.frame.maxY) - 350)
         modal.addChild(fourthImageToSet)
-        let fourthTextLabel = self.createNewLabelWithPoints(70, name:"fourth one", xPosition: Int(modalBackground.frame.maxX) - 120, yPosition: Int(modalBackground.frame.maxY) - 470)
+        let fourthTextLabel = self.createNewLabelWithPoints(70, name:"Mac Miller", xPosition: Int(modalBackground.frame.maxX) - 120, yPosition: Int(modalBackground.frame.maxY) - 450)
         modal.addChild(fourthTextLabel)
         
         //2 - 0
         let fifthImage = self.createNewImageRequiredPoints(75, position: 4, xPosition: Int(modalBackground.frame.minX) + 120, yPosition: Int(modalBackground.frame.maxY) - 550)
         modal.addChild(fifthImage)
 
-        let fifthTextLabel = self.createNewLabelWithPoints(75, name:"fifth one", xPosition: Int(modalBackground.frame.minX) + 120, yPosition: Int(modalBackground.frame.maxY) - 620)
+        let fifthTextLabel = self.createNewLabelWithPoints(75, name:"Bernie Sanders", xPosition: Int(modalBackground.frame.minX) + 120, yPosition: Int(modalBackground.frame.maxY) - 650)
         modal.addChild(fifthTextLabel)
         
         //2 - 1
-        let sixthImage = self.createNewImageRequiredPoints(80, position: 5, xPosition: Int(modalBackground.frame.maxX) - 120, yPosition: Int(modalBackground.frame.maxY)-550)
+        let sixthImage = self.createNewImageRequiredPoints(80, position: 5, xPosition: Int(modalBackground.frame.maxX) - 120, yPosition: Int(modalBackground.frame.maxY) - 550)
         modal.addChild(sixthImage)
         
-        let sixthTextLabel = self.createNewLabelWithPoints(80, name:"sixth one", xPosition: Int(modalBackground.frame.maxX) - 120, yPosition: Int(modalBackground.frame.maxY) - 620)
+        let sixthTextLabel = self.createNewLabelWithPoints(80, name:"Flo Rida", xPosition: Int(modalBackground.frame.maxX) - 120, yPosition: Int(modalBackground.frame.maxY) - 650)
         modal.addChild(sixthTextLabel)
         
         //3 - 0
-        let seventhImage = self.createNewImageRequiredPoints(120, position: 6, xPosition: Int(modalBackground.frame.minX) + 120, yPosition: Int(modalBackground.frame.maxY) - 700)
+        let seventhImage = self.createNewImageRequiredPoints(120, position: 6, xPosition: Int(modalBackground.frame.minX) + 120, yPosition: Int(modalBackground.frame.maxY) - 750)
         modal.addChild(seventhImage)
         
-        let seventhTextLabel = self.createNewLabelWithPoints(120, name:"fifth one", xPosition: Int(modalBackground.frame.minX) + 120, yPosition: Int(modalBackground.frame.maxY) - 770)
+        let seventhTextLabel = self.createNewLabelWithPoints(120, name:"Barack Obama", xPosition: Int(modalBackground.frame.minX) + 120, yPosition: Int(modalBackground.frame.maxY) - 850)
         modal.addChild(seventhTextLabel)
         
         //3 - 1
-        let eightImage = self.createNewImageRequiredPoints(125, position: 7, xPosition: Int(modalBackground.frame.maxX) - 120, yPosition: Int(modalBackground.frame.maxY) - 700)
+        let eightImage = self.createNewImageRequiredPoints(125, position: 7, xPosition: Int(modalBackground.frame.maxX) - 120, yPosition: Int(modalBackground.frame.maxY) - 750)
         modal.addChild(eightImage)
         
-        let eightTextLabel = self.createNewLabelWithPoints(125, name:"sixth one", xPosition: Int(modalBackground.frame.maxX) - 120, yPosition: Int(modalBackground.frame.maxY) - 770)
+        let eightTextLabel = self.createNewLabelWithPoints(125, name:"Vladirimir Putin", xPosition: Int(modalBackground.frame.maxX) - 120, yPosition: Int(modalBackground.frame.maxY) - 850)
         modal.addChild(eightTextLabel)
         
        
@@ -95,7 +94,7 @@ class EnemiesView : ModalView {
         let ninthImage = self.createNewImageRequiredPoints(130, position: 8, xPosition:Int(modalBackground.frame.midX), yPosition: Int(modalBackground.frame.maxY) - 850)
         modal.addChild(ninthImage)
         
-        let ninthTextLabel = self.createNewLabelWithPoints(130, name:"sixth one", xPosition: Int(modalBackground.frame.midX), yPosition: Int(modalBackground.frame.maxY) - 920)
+        let ninthTextLabel = self.createNewLabelWithPoints(130, name:"Marco Rubio", xPosition: Int(modalBackground.frame.midX), yPosition: Int(modalBackground.frame.maxY) - 950)
         modal.addChild(ninthTextLabel)
         
     }
@@ -127,7 +126,7 @@ class EnemiesView : ModalView {
             characterImage.position = CGPoint(x: xPosition, y: yPosition)
             return characterImage
         }
-        let defaultImage = SpriteButtonNode(imageNamed: TextureFileName.CometSmallGlow)
+        let defaultImage = SpriteButtonNode(imageNamed: TextureFileName.kNoImage)
         defaultImage.position = CGPoint(x: xPosition, y: yPosition)
         return defaultImage
     }

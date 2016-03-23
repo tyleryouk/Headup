@@ -33,7 +33,7 @@ struct TextureFileName {
     static let ShieldBlur = "ShieldBlur"
 
     static let EngineFlame = "EngineFlame"
-
+    
     static let CometLarge = "CometLarge"
     static let CometLargeGlow = "CometLargeGlow"
     static let CometLarge2 = "CometLarge2"
@@ -81,4 +81,18 @@ struct TextureFileName {
     static let CrackedMedium = "CrackedMedium"
     static let CrackedLarge = "CrackedLarge"
     static let Explosion = "Explosion"
+    
+    static let kEnemiesButton = "buttonfinished"
+    static let kEnemiesButtonToched = "buttontouched"
+    static let kBarackObama = "BarackObama"
+    static let kBernieSanders = "BernieSanders"
+    static let kFloRida = "FloRida"
+    static let kHilaryClinton = "HilaryClinton"
+    static let kJebBush = "JebBush"
+    static let kMacMiller = "MacMiller"
+    static let kMarcoRubio = "MarcoRubio"
+    static let kTedCruz = "TedCruz"
+    static let kVladimirPutin = "VladimirPutin"
+    static let kNoImage = "officialquestion"
+    static let kCloseEnemiesViewButton = "closeEnemiesViewButton"
 }

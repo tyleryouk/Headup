@@ -11,7 +11,8 @@ import SpriteKit
 class PauseMenuView: ModalView {
   // MARK: - Immutable var
     let resumeButton = SpriteButtonNode(imageNamed: TextureFileName.ButtonResume)
-    let enemiesButton = SpriteButtonNode(imageNamed: TextureFileName.ButtonHome)
+    let enemiesButton = SpriteButtonNode(imageNamed: TextureFileName.kEnemiesButton)
+    let enemiesButtonTouchd = SpriteButtonNode(imageNamed: TextureFileName.kEnemiesButtonToched)
     let quitButton = SpriteButtonNode(imageNamed: TextureFileName.ButtonHome)
     let soundButton = SpriteButtonNode(imageNamed: TextureFileName.ButtonSound)
     let musicButton = SpriteButtonNode(imageNamed: TextureFileName.ButtonMusic)
@@ -20,13 +21,15 @@ class PauseMenuView: ModalView {
     init() {
         super.init(size: CGSize(width: 640, height: 740))
 
-        // Resume
-        resumeButton.position = CGPoint(x: modalBackground.frame.midX, y: modalBackground.frame.maxY - 200)
-        modal.addChild(resumeButton)
-
         // Enemies
-        enemiesButton.position = CGPoint(x: modalBackground.frame.midX, y: modalBackground.frame.maxY - 400)
+        enemiesButton.position = CGPoint(x: modalBackground.frame.midX, y: modalBackground.frame.maxY - 150)
+        enemiesButton.setTexture(SKTexture(imageNamed: TextureFileName.kEnemiesButton), forState: .Normal)
+        enemiesButton.setTexture(SKTexture(imageNamed: TextureFileName.kEnemiesButtonToched), forState: .Active)
         modal.addChild(enemiesButton)
+        
+        // Resume
+        resumeButton.position = CGPoint(x: modalBackground.frame.midX, y: modalBackground.frame.maxY - 400)
+        modal.addChild(resumeButton)
 
         // Sound
         soundButton.position = CGPoint(x: modalBackground.frame.minX + 130, y: modalBackground.frame.minY + 200)
