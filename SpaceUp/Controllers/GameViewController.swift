@@ -70,11 +70,11 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
     
     // Notification
     let notificationCenter = NSNotificationCenter.defaultCenter()
-    notificationCenter.addObserver(self, selector: "paymentTransactionDidComplete:", name: PaymentTransactionDidCompleteNotification, object: nil)
-    notificationCenter.addObserver(self, selector: "paymentTransactionDidRestore:", name: PaymentTransactionDidRestoreNotification, object: nil)
-    notificationCenter.addObserver(self, selector: "paymentTransactionDidFail:", name: PaymentTransactionDidFailNotification, object: nil)
-    notificationCenter.addObserver(self, selector: "applicationWillResignActive:", name: UIApplicationWillResignActiveNotification, object: nil)
-    notificationCenter.addObserver(self, selector: "applicationDidBecomeActive:", name: UIApplicationDidBecomeActiveNotification, object: nil)
+    notificationCenter.addObserver(self, selector: #selector(GameViewController.paymentTransactionDidComplete(_:)), name: PaymentTransactionDidCompleteNotification, object: nil)
+    notificationCenter.addObserver(self, selector: #selector(GameViewController.paymentTransactionDidRestore(_:)), name: PaymentTransactionDidRestoreNotification, object: nil)
+    notificationCenter.addObserver(self, selector: #selector(GameViewController.paymentTransactionDidFail(_:)), name: PaymentTransactionDidFailNotification, object: nil)
+    notificationCenter.addObserver(self, selector: #selector(UIApplicationDelegate.applicationWillResignActive(_:)), name: UIApplicationWillResignActiveNotification, object: nil)
+    notificationCenter.addObserver(self, selector: #selector(UIApplicationDelegate.applicationDidBecomeActive(_:)), name: UIApplicationDidBecomeActiveNotification, object: nil)
   }
   
   override func viewWillDisappear(animated: Bool) {
@@ -262,7 +262,7 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
 
     // Container view
     interstitialAdView = InterstitialAdView(frame: skView.bounds)
-    interstitialAdView!.closeButton.addTarget(self, action: "closeInterstitialAd", forControlEvents: .TouchUpInside)
+    interstitialAdView!.closeButton.addTarget(self, action: #selector(GameViewController.closeInterstitialAd), forControlEvents: .TouchUpInside)
     skView.addSubview(interstitialAdView!)
     
     // Pause view
@@ -498,11 +498,10 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
     
     
     func gameSceneDidRequestToShowEnemiesView(gameScene: GameScene, withCurrentScore: Int) {
-        print("in delegate score:" + String(withCurrentScore))
         gameScene.view?.paused = false
         gameScene.pauseMenu?.removeFromParent()
         gameScene.enemiesView = gameScene.presentEnemiesGameView(withCurrentScore)
-        afterDelay(0.01) { [weak gameScene] in
+        afterDelay(0.05) { [weak gameScene] in
             gameScene!.view?.paused = true
         }
     }
@@ -511,7 +510,7 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
         gameScene.view?.paused = false
         gameScene.enemiesView?.removeFromParent()
         gameScene.pauseMenu = gameScene.presentPauseMenu()
-        afterDelay(0.01) { [weak gameScene] in
+        afterDelay(0.05) { [weak gameScene] in
             gameScene!.view?.paused = true
         }
 

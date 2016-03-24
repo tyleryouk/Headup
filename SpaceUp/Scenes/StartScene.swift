@@ -78,8 +78,8 @@ class StartScene: SKScene, ButtonDelegate {
     
     // Notification
     let notificationCenter = NSNotificationCenter.defaultCenter()
-    notificationCenter.addObserver(self, selector: "paymentTransactionDidComplete:", name: PaymentTransactionDidCompleteNotification, object: nil)
-    notificationCenter.addObserver(self, selector: "paymentTransactionDidRestore:", name: PaymentTransactionDidRestoreNotification, object: nil)
+    notificationCenter.addObserver(self, selector: #selector(StartScene.paymentTransactionDidComplete(_:)), name: PaymentTransactionDidCompleteNotification, object: nil)
+    notificationCenter.addObserver(self, selector: #selector(StartScene.paymentTransactionDidRestore(_:)), name: PaymentTransactionDidRestoreNotification, object: nil)
   }
   
   override func willMoveFromView(view: SKView) {

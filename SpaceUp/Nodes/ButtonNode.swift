@@ -41,7 +41,7 @@ class ButtonNode: SKSpriteNode {
   override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
     isTouched = true
     
-    touchCount++
+    touchCount += 1
     
     // Sound
     playTapSoundIfNeeded()
