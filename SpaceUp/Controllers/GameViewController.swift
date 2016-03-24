@@ -497,10 +497,10 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
   }
     
     
-    func gameSceneDidRequestToShowEnemiesView(gameScene: GameScene, withCurrentScore: Int) {
+    func gameSceneDidRequestToShowEnemiesView(gameScene: GameScene, withHighestUserScore: Int) {
         gameScene.view?.paused = false
         gameScene.pauseMenu?.removeFromParent()
-        gameScene.enemiesView = gameScene.presentEnemiesGameView(withCurrentScore)
+        gameScene.enemiesView = gameScene.presentEnemiesGameView(withHighestUserScore)
         afterDelay(0.05) { [weak gameScene] in
             gameScene!.view?.paused = true
         }

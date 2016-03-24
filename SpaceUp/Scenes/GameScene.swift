@@ -243,11 +243,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
     return endGameView
   }
     
-    func presentEnemiesGameView(currentScore: Int) -> EnemiesView {
-        let enemiesView = EnemiesView(currentScore: currentScore)
+    func presentEnemiesGameView(highestUserScore: Int) -> EnemiesView {
+        let enemiesView = EnemiesView(overallHighestUserScore: highestUserScore)
         enemiesView.zPosition = 1000
         enemiesView.exitButton.delegate = self
-        enemiesView.currentUserScore = currentScore
         addChild(enemiesView)
         return enemiesView
     }
@@ -367,7 +366,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
     } else if button == endGameView?.leaderboardButton {
         gameSceneDelegate?.gameSceneDidRequestLeaderboard?(self)
     } else if button == pauseMenu?.enemiesButton {
-        gameSceneDelegate?.gameSceneDidRequestToShowEnemiesView?(self, withCurrentScore: Int(round(gameData.score)))
+        if (gameData.score > gameData.topScore) {
+            gameSceneDelegate?.gameSceneDidRequestToShowEnemiesView?(self, withHighestUserScore: Int(round(gameData.score)))
+        } else {
+            gameSceneDelegate?.gameSceneDidRequestToShowEnemiesView?(self, withHighestUserScore: Int(round(gameData.topScore)))
+        }
     } else if button == enemiesView?.exitButton {
        gameSceneDelegate?.gameSceneDidRequestToDismissEnemiesView?(self)
     }

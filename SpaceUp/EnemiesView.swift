@@ -11,7 +11,7 @@ import SpriteKit
 class EnemiesView : ModalView {
     // MARK: - Immutable var
     let exitButton = SpriteButtonNode(imageNamed: TextureFileName.kCloseEnemiesViewButton)
-    var currentUserScore:Int?
+    var highestUserScore:Int?
     
     let firstImage = SpriteButtonNode(imageNamed: TextureFileName.kHilaryClinton)
     let secondImage = SpriteButtonNode(imageNamed: TextureFileName.kTedCruz)
@@ -26,9 +26,9 @@ class EnemiesView : ModalView {
     let spriteImagesArray: Array<SpriteButtonNode>
     
     // MARK: - Init
-    init(currentScore: Int) {
+    init(overallHighestUserScore: Int) {
         spriteImagesArray = [self.firstImage, self.secondImage, self.thirdImage, self.fourthImage, self.fifthImage, self.sixthImage, self.seventhImage, self.eighthImage, ninethImage]
-        self.currentUserScore = currentScore
+        self.highestUserScore = overallHighestUserScore
         super.init(size: CGSize(width: 640, height: 1000))
 
         //Resume
@@ -110,7 +110,7 @@ class EnemiesView : ModalView {
     private func createNewLabelWithPoints(pointsRequired: Int, name: String, xPosition:Int, yPosition: Int) -> SKLabelNode {
         var aLabel = SKLabelNode()
         aLabel = SKLabelNode(fontNamed: "Arial")
-        if(self.currentUserScore >= pointsRequired) {
+        if(self.highestUserScore >= pointsRequired) {
             aLabel.text = name
         } else {
             aLabel.text = "Unlock at " + String(pointsRequired)
@@ -121,7 +121,7 @@ class EnemiesView : ModalView {
     }
     
     private func createNewImageRequiredPoints(pointsRequired: Int, position: Int, xPosition: Int, yPosition: Int) -> SpriteButtonNode {
-        if (self.checkIfImageShouldAppear(self.currentUserScore!, requiredScore: pointsRequired)) {
+        if (self.checkIfImageShouldAppear(self.highestUserScore!, requiredScore: pointsRequired)) {
             let characterImage = spriteImagesArray[position]
             characterImage.position = CGPoint(x: xPosition, y: yPosition)
             return characterImage
