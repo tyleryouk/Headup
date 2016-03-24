@@ -371,8 +371,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
         } else {
             gameSceneDelegate?.gameSceneDidRequestToShowEnemiesView?(self, withHighestUserScore: Int(round(gameData.topScore)))
         }
-    } else if button == enemiesView?.exitButton {
-       gameSceneDelegate?.gameSceneDidRequestToDismissEnemiesView?(self)
     }
   }
   

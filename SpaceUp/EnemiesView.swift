@@ -24,9 +24,11 @@ class EnemiesView : ModalView {
     let ninethImage = SpriteButtonNode(imageNamed: TextureFileName.kMarcoRubio)
    
     let spriteImagesArray: Array<SpriteButtonNode>
-    
+    var tableView = UIViewController()
     // MARK: - Init
     init(overallHighestUserScore: Int) {
+        //self.scene?.view?.addSubview(tableView)
+        
         spriteImagesArray = [self.firstImage, self.secondImage, self.thirdImage, self.fourthImage, self.fifthImage, self.sixthImage, self.seventhImage, self.eighthImage, ninethImage]
         self.highestUserScore = overallHighestUserScore
         super.init(size: CGSize(width: 640, height: 1000))

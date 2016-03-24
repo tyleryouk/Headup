@@ -23,6 +23,8 @@
 		43C05DF21B2A81A4009B8148 /* SamplingFilterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C05DF11B2A81A4009B8148 /* SamplingFilterType.swift */; };
 		43F1ABB31B2127DE00DA1E1D /* MathHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F1ABB21B2127DE00DA1E1D /* MathHelper.swift */; };
 		475F23851CA277B10039276A /* EnemiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 475F23841CA277B10039276A /* EnemiesView.swift */; };
+		47BCAFE91CA4375F0001E688 /* EnemiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47BCAFE81CA4375F0001E688 /* EnemiesViewController.swift */; };
+		47BCAFEB1CA43B010001E688 /* EnemyCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47BCAFEA1CA43B010001E688 /* EnemyCollectionCell.swift */; };
 		EB0211EE1B1DCF990087B2E6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0211ED1B1DCF990087B2E6 /* AppDelegate.swift */; };
 		EB0211F71B1DCF9A0087B2E6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB0211F51B1DCF9A0087B2E6 /* Main.storyboard */; };
 		EB0211FC1B1DCF9A0087B2E6 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB0211FA1B1DCF9A0087B2E6 /* LaunchScreen.xib */; };
@@ -176,6 +178,8 @@
 		43C05DF11B2A81A4009B8148 /* SamplingFilterType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SamplingFilterType.swift; path = Types/SamplingFilterType.swift; sourceTree = "<group>"; };
 		43F1ABB21B2127DE00DA1E1D /* MathHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MathHelper.swift; path = Helpers/MathHelper.swift; sourceTree = "<group>"; };
 		475F23841CA277B10039276A /* EnemiesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnemiesView.swift; sourceTree = "<group>"; };
+		47BCAFE81CA4375F0001E688 /* EnemiesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnemiesViewController.swift; sourceTree = "<group>"; };
+		47BCAFEA1CA43B010001E688 /* EnemyCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnemyCollectionCell.swift; sourceTree = "<group>"; };
 		EB0211E81B1DCF990087B2E6 /* Santa Express.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Santa Express.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB0211EC1B1DCF990087B2E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EB0211ED1B1DCF990087B2E6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -443,6 +447,7 @@
 			isa = PBXGroup;
 			children = (
 				EB0212151B1DD1DD0087B2E6 /* GameViewController.swift */,
+				47BCAFE81CA4375F0001E688 /* EnemiesViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -484,6 +489,7 @@
 				EB0211FA1B1DCF9A0087B2E6 /* LaunchScreen.xib */,
 				EBE4E5AA1B3E35F4000664C1 /* LoadingIndicatorView.swift */,
 				EB0211F51B1DCF9A0087B2E6 /* Main.storyboard */,
+				47BCAFEA1CA43B010001E688 /* EnemyCollectionCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -869,6 +875,7 @@
 				EB661F701B3E721900B6BA56 /* NotificationName.swift in Sources */,
 				EB0212371B1DD3A00087B2E6 /* SKAction+SpecialEffects.swift in Sources */,
 				EB0212351B1DD3A00087B2E6 /* Int+Extensions.swift in Sources */,
+				47BCAFE91CA4375F0001E688 /* EnemiesViewController.swift in Sources */,
 				EB02128A1B1EBE930087B2E6 /* CometType.swift in Sources */,
 				EB02123D1B1DD3A00087B2E6 /* Vector3.swift in Sources */,
 				EBC2EB8E1B3597CD00CEA20B /* SphereHighlightNode.swift in Sources */,
@@ -914,6 +921,7 @@
 				EB02125C1B1DD51E0087B2E6 /* PlayerNode.swift in Sources */,
 				EB0212511B1DD4010087B2E6 /* ButtonNode.swift in Sources */,
 				EB0212981B1F188B0087B2E6 /* NodeHelper.swift in Sources */,
+				47BCAFEB1CA43B010001E688 /* EnemyCollectionCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

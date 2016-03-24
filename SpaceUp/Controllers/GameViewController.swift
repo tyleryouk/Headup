@@ -499,22 +499,16 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
     
     func gameSceneDidRequestToShowEnemiesView(gameScene: GameScene, withHighestUserScore: Int) {
         gameScene.view?.paused = false
-        gameScene.pauseMenu?.removeFromParent()
-        gameScene.enemiesView = gameScene.presentEnemiesGameView(withHighestUserScore)
+        
+        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+        let enemiesVC = storyboard.instantiateViewControllerWithIdentifier("enemiesViewController") as! EnemiesViewController
+        enemiesVC.highestScore = withHighestUserScore
+        self.presentViewController(enemiesVC, animated: false, completion: nil)
         afterDelay(0.05) { [weak gameScene] in
             gameScene!.view?.paused = true
         }
     }
   
-    func gameSceneDidRequestToDismissEnemiesView(gameScene: GameScene) {
-        gameScene.view?.paused = false
-        gameScene.enemiesView?.removeFromParent()
-        gameScene.pauseMenu = gameScene.presentPauseMenu()
-        afterDelay(0.05) { [weak gameScene] in
-            gameScene!.view?.paused = true
-        }
-
-    }
     
   // MARK: - MotionDataSource
   func accelerometerDataForScene(scene: SKScene) -> CMAccelerometerData? {
